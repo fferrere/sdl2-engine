@@ -28,6 +28,7 @@ Load from your LISP Repl
 ```
 
 ## Demo
+![Screenshot Demo](img/sdl2-engine-demo-2.png)
 ```lisp
 (ql:quickload "sdl2-engine/demo")
 (sdl2-engine/demo:start)
