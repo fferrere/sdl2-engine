@@ -38,7 +38,7 @@ Use :
 - Space key to toggle bounding box display
 - Esc to exit.
 
-* [Code](https://github.com/fferrere/sdl2-engine/demo/demo.lisp)
+* [Code](demo/demo.lisp)
 * [Artwork by Lanea Zimmerman](https://opengameart.org/content/tiny-16-basic)
 
 ## Examples
