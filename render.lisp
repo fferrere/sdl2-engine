@@ -41,19 +41,19 @@
   (apply #'sdl2:set-render-draw-color (engine-renderer engine)
          (default-draw-color engine)))
 
-(defmethod draw-atlas-texture ((engine engine))
-  "Check and debug function"
-  (let* ((atlas (engine-texts engine))
-         (texture (at-texture atlas))
-         (renderer (engine-renderer engine)))
-    (with-rect (rect 0 0 (sdl2:texture-width texture) (sdl2:texture-height texture))
-      (sdl2:render-copy renderer texture :dest-rect rect))
-    (loop for key being the hash-keys of (at-texts atlas) using (hash-value text)
-          for x = (text-x text)
-          for y = (text-y text)
-          for w = (text-w text)
-          for h = (text-h text)
-          do (draw-rect engine x y w h :color '(255 0 0)))))
+;; (defmethod draw-atlas-texture ((engine engine))
+;;   "Check and debug function"
+;;   (let* ((atlas (engine-texts engine))  ;; Bug here 
+;;          (texture (at-texture atlas))
+;;          (renderer (engine-renderer engine)))
+;;     (with-rect (rect 0 0 (sdl2:texture-width texture) (sdl2:texture-height texture))
+;;       (sdl2:render-copy renderer texture :dest-rect rect))
+;;     (loop for key being the hash-keys of (at-texts atlas) using (hash-value text)
+;;           for x = (text-x text)
+;;           for y = (text-y text)
+;;           for w = (text-w text)
+;;           for h = (text-h text)
+;;           do (draw-rect engine x y w h :color '(255 0 0)))))
 
 
 (defmethod draw-text ((engine engine) asset-name text-id x y &key (position :left))

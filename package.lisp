@@ -23,12 +23,14 @@
            #:with-text-asset
            #:add-text
            #:add-text-digits
+           #:add-text-alphabet
            #:draw-text
            #:draw-texts
            #:draw-number
            ;; Keyboard
            #:add-keyboard-mapping
            #:del-keyboard-mapping
+           #:keyboard-key-string
            #:reset-keyboard-mapping
            #:enable-keyboard-key
            #:disable-keyboard-key

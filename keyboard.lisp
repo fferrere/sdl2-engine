@@ -27,14 +27,16 @@
                            - Engine : engine object
                            - Status : status of the key - A keyword :up or :down")
    (enabledp :accessor key-enabledp :initarg :enabledp)
-   (name :accessor key-name :initarg :name)
+   (name :accessor kb-name :initarg :name)
+   (key :accessor kb-key :initarg :key)
    (scancode :accessor key-scancode))
   (:default-initargs :enabledp t))
 
 
-(defmethod add-keyboard-mapping ((engine engine) key handler)
-  (let ((key-binding (make-instance 'key-binding :name key :handler handler)))
-    (setf (gethash (string key) (keyboard-mapping engine)) key-binding)))
+(defmethod add-keyboard-mapping ((engine engine) name key handler)
+  (let* ((str (string-downcase (string key)))
+         (key-binding (make-instance 'key-binding :name name :key str :handler handler)))
+    (setf (gethash str (keyboard-mapping engine)) key-binding)))
 
 (defmethod del-keyboard-mapping ((engine engine) key)
   (remhash (string key) (keyboard-mapping engine)))
@@ -44,6 +46,13 @@
 
 (defmethod keyboard-binding ((engine engine) scancode)
   (gethash (sdl2:scancode-name scancode) (keyboard-mapping engine) nil))
+
+(defmethod keyboard-key-string ((engine engine) name)
+  (loop for key being the hash-keys of (keyboard-mapping engine)
+          using (hash-value key-binding)
+        for kb-name = (kb-name key-binding)
+        when (string= (kb-name key-binding) name)
+          do (return-from keyboard-key-string key)))
 
 (defmethod set-key-status ((engine engine) key status)
   (let ((key-binding (gethash (string key) (keyboard-mapping engine) nil)))

@@ -118,6 +118,7 @@ What you can do :
 - [add-asset](#add-asset)
 - [add-keyboard-mapping](#add-keyboard-mapping)
 - [del-keyboard-mapping](#del-keyboard-mapping)
+- [keyboard-key-string](#keyboard-key-string)
 - [reset-keyboard-mapping](#reset-keyboard-mapping)
 - [enable-keyboard-key](#enable-keyboard-key)
 - [disable-keyboard-key](#disable-keyboard-key)
@@ -127,6 +128,7 @@ What you can do :
 - [with-text-asset](#with-text-asset)
 - [add-text](#add-text)
 - [add-text-digits](#add-text-digits)
+- [add-text-alphabet](#add-text-alphabet)
 - [draw-sprite](#draw-sprite)
 - [draw-text](#draw-text)
 - [draw-texts](#draw-texts)
@@ -260,6 +262,19 @@ Use only inside macro [with-text-asset](#with-text-asset).
 - blue : an integer
 - alpha : an integer
 
+##### [Method] add-text-alphabet<a id="add-text-alphabet"></a>
+Use only inside macro [with-text-asset](#with-text-asset).
+
+```lisp
+(add-text-alphabet asset red green blue alpha)
+```
+- asset : a symbol
+  - Used within the macro
+- red : an integer
+- green : an integer
+- blue : an integer
+- alpha : an integer
+
 
 ### Draw functions
 #### [Method] draw-sprite<a id="draw-sprite"></a>
@@ -365,7 +380,19 @@ Remove one control keyboard
 - engine : engine class object
 - key : a keyword
   - matching a keyboard key, ex :space for the SPACE key
-  
+
+
+#### [Method] keyboard-key-string<a id="keyboard-key-string"></a>
+Return the key from the key-binding mapping named 'name'
+
+```lisp
+(keyboard-key-string engine name)
+```
+- engine : engine class object
+- name : a string (the name of the mapping, ex : "pause")
+
+
+
 #### [Method] reset-keyboard-mapping<a id="reset-keyboard-mapping"></a>
 Remove all controls keyboard
 

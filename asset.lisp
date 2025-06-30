@@ -49,6 +49,14 @@
         for string = (prin1-to-string i)
         do (add-text asset string string red green blue alpha)))
 
+(defmethod add-text-alphabet ((asset asset-text) red green blue alpha)
+  (dolist (string '("up" "down" "left" "right" "space"))
+      (add-text asset string string red green blue alpha))
+  (loop with first-char-code = (char-code #\a)
+        for i from 0 below 26
+        for string = (format nil "~a" (code-char (+ i first-char-code)))
+        do (add-text asset string string red green blue alpha)))
+
 (defmethod clear-asset ((asset asset-text))
   (sdl2:destroy-texture (at-texture asset)))
 
